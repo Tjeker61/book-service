@@ -1,4 +1,4 @@
-import * as bookService from '../services/book.service';
+import * as bookService from '../services/book.service.js';
 
 export const addBook = async (req, res, next) => {
     try {
