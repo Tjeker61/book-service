@@ -5,7 +5,7 @@ const sequelize = new Sequelize(process.env.DB_NAME || 'test', process.env.DB_US
   host: process.env.DB_HOST || 'localhost',
   dialect: process.env.DB_DIALECT || 'mysql',
   port: process.env.DB_PORT || 3306,
-  logging: process.env.NODE_ENV === 'development'
+  logging: process.env.NODE_ENV === 'development' ? console.log : false
 });
 
 // DB connection
