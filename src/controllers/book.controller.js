@@ -30,7 +30,7 @@ export const removeBook = async (req, res, next) => {
 export const updateBookTitle = async (req, res, next) => {
     try {
         const book = await bookService.updateBookTitle(req.params.isbn, req.params.title);
-        return res.sendStatus(200).json(book);
+        return res.status(200).json(book);
     } catch (e) {
         return next(e);
     }
