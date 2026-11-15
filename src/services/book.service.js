@@ -96,12 +96,48 @@ export const updateBookTitle = async (isbn, newTitle) => {
     return await bookRepository.updateBookTitle(isbn, newTitle);
 }
 
-export const getBooksByAuthor = async (author) => {
-    //TODO
+export const getBooksByAuthor = async (authorName) => {
+    const author = await authorRepository.findAuthorById(authorName);
+    if (!author) {
+        throw new Error('Author not found');
+    }
+
+    return await author.getBooks({
+        attributes: {
+            exclude: ['createdAt', 'updatedAt']
+        },
+        joinTableAttributes: [],
+        include: [{
+            model: Author,
+            as: 'authors',
+            attributes: ['name', [sequelize.col('birth_date'), 'birthDate']],
+            through: {
+                attributes: []
+            }
+        }]
+    });
 }
 
-export const getBooksByPublisher = async (publisher) => {
-    //TODO
+export const getBooksByPublisher = async (publisherName) => {
+    const publisher = await publisherRepository.findPublisherById(publisherName);
+    if (!publisher) {
+        throw new Error('Publisher not found');
+    }
+
+    return await publisher.getBooks({
+        attributes: {
+            exclude: ['createdAt', 'updatedAt']
+        },
+        joinTableAttributes: [],
+        include: [{
+            model: Author,
+            as: 'authors',
+            attributes: ['name', [sequelize.col('birth_date'), 'birthDate']],
+            through: {
+                attributes: []
+            }
+        }]
+    });
 }
 
 export const getAuthors = async (isbn) => {
