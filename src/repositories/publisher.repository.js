@@ -4,5 +4,4 @@ export const findPublisherById = async (id, options = {}) => Publisher.findByPk(
 
 export const addPublisher = async (publisherName, options = {}) => Publisher.create({
     publisher_name: publisherName
-});
-
+}, options);

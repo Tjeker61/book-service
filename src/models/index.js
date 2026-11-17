@@ -12,7 +12,7 @@ Book.belongsTo(Publisher, {
 });
 Publisher.hasMany(Book, {
     foreignKey: "publisher",
-    targetKey: "publisher_name",
+    sourceKey: "publisher_name",
     as: "books"
 });
 
@@ -37,13 +37,13 @@ const BooksAuthors = sequelize.define("BookAuthor", {
 });
 
 Book.belongsToMany(Author, {
-    through: "BooksAuthors",
+    through: BooksAuthors,
     foreignKey: "isbn",
     otherKey: "author_name",
     as: "authors"
 });
 Author.belongsToMany(Book, {
-    through: "BooksAuthors",
+    through: BooksAuthors,
     foreignKey: "author_name",
     otherKey: "isbn",
     as: "books"

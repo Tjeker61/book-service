@@ -5,4 +5,6 @@ export const findAuthorById = async (id, options = {}) => Author.findByPk(id, op
 export const addAuthor = async (author, options = {}) => Author.create({
     name: author.name,
     birth_date: new Date(author.birthDate)
-});
+}, options);
+
+export const removeAuthor = async (name, options = {}) => Author.destroy({where: {name}, ...options});

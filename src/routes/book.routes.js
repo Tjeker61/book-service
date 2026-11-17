@@ -10,9 +10,4 @@ router.patch('/book/:isbn/title/:title', bookController.updateBookTitle)
 router.get('/books/author/:author', bookController.getBooksByAuthor)
 router.get('/books/publisher/:publisher', bookController.getBooksByPublisher)
 
-router.get('/author/book/:isbn', bookController.getAuthors)
-router.delete('/author/:author', bookController.removeAuthor)
-
-router.get('/publishers/author/:author', bookController.getPublishersByAuthor)
-
 export default router;
